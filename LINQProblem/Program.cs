@@ -11,8 +11,8 @@ namespace LINQProblem
         static void Main(string[] args)
         {
             List<PersonDetails> list = new List<PersonDetails>();
-            AddPersonToList.AddMultiplePersonDetails();
-            //AddPersonToList.RetreiveTop3RecordsBasedOnRating(list);
+           // AddPersonToList.AddMultiplePersonDetails();
+            AddPersonToList.RetreiveTop3RecordsBasedOnRating(list);
             Console.ReadLine();
         }
     }

@@ -25,6 +25,7 @@ namespace LINQProblem
                 new PersonDetails() { ProductId = 5, UserId = 5, Review = "average", Rating = 13, IsLike = false }
             };
             IterateOverProductList(list);
+            RetreiveTop3RecordsBasedOnRating(list);
             return list;
         }
         public static void IterateOverProductList(List<PersonDetails> list)
@@ -40,6 +41,16 @@ namespace LINQProblem
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+        /// <summary>
+        /// Retrieve top 3 records from the list who’s rating is high using LINQ
+        /// </summary>
+        /// <param name="list"></param>
+        public static void RetreiveTop3RecordsBasedOnRating(List<PersonDetails> list)
+        {
+            var sortedRatingRes = (from product in list orderby product.Rating descending select product).ToList();
+            Console.WriteLine("After Sorting");
+            IterateOverProductList(sortedRatingRes);
         }
     }
 }
