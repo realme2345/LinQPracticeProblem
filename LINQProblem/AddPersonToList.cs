@@ -25,7 +25,8 @@ namespace LINQProblem
                 new PersonDetails() { ProductId = 5, UserId = 5, Review = "average", Rating = 13, IsLike = false }
             };
             IterateOverProductList(list);
-            RetreiveTop3RecordsBasedOnRating(list);
+            //RetreiveTop3RecordsBasedOnRating(list);
+            RetreiveRecordsBasedOnProduct(list);
             return list;
         }
         public static void IterateOverProductList(List<PersonDetails> list)
@@ -51,6 +52,12 @@ namespace LINQProblem
             var sortedRatingRes = (from product in list orderby product.Rating descending select product).ToList();
             Console.WriteLine("After Sorting");
             IterateOverProductList(sortedRatingRes);
+        }
+        public static void RetreiveRecordsBasedOnProduct(List<PersonDetails> list)
+        {
+            var Res =list.Where(p=>p.Rating>3 && (p.ProductId==1 || p.ProductId==4 || p.ProductId==9)).ToList();
+            Console.WriteLine("After Sorting");
+            IterateOverProductList(Res);
         }
     }
 }
