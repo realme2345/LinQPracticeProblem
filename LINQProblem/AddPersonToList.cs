@@ -77,5 +77,11 @@ namespace LINQProblem
                 Console.WriteLine("ProductId :" + item.productID);
             }
         }
+        public static void RetreiveTop5Records(List<PersonDetails> list)
+        {
+            Console.WriteLine();
+            var res=(from num in list select num).Skip(5).ToList();
+            IterateOverProductList(res);
+        }
     }
 }
