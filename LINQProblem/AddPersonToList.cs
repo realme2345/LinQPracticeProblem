@@ -26,7 +26,8 @@ namespace LINQProblem
             };
             IterateOverProductList(list);
             //RetreiveTop3RecordsBasedOnRating(list);
-            RetreiveRecordsBasedOnProduct(list);
+            // RetreiveRecordsBasedOnProduct(list);
+            RetreiveRecordsBasedProductCount(list);
             return list;
         }
         public static void IterateOverProductList(List<PersonDetails> list)
@@ -53,11 +54,28 @@ namespace LINQProblem
             Console.WriteLine("After Sorting");
             IterateOverProductList(sortedRatingRes);
         }
+        /// <summary>
+        /// Management - Retrieve all record from the list who’s rating are greater then 3 and productID is 1 or 4 or 9 using LINQ
+        /// </summary>
+        /// <param name="list"></param>
         public static void RetreiveRecordsBasedOnProduct(List<PersonDetails> list)
         {
             var Res =list.Where(p=>p.Rating>3 && (p.ProductId==1 || p.ProductId==4 || p.ProductId==9)).ToList();
             Console.WriteLine("After Sorting");
             IterateOverProductList(Res);
+        }
+        /// <summary>
+        /// Management - Retrieve count of review present for each productID
+        /// </summary>
+        /// <param name="list"></param>
+        public static void RetreiveRecordsBasedProductCount(List<PersonDetails> list)
+        {
+            var Result = (list.GroupBy(p => p.ProductId).Select(x=> new {productID=x.Key,count=x.Count()})).ToList();
+            Console.WriteLine("RetreiveRecordsBasedProductCount");
+            foreach(var item in Result)
+            {
+                Console.WriteLine("ProductId :" + item.productID);
+            }
         }
     }
 }
